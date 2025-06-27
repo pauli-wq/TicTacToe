@@ -7,17 +7,15 @@ int main(void)
     int opcion = 0;
     unsigned int fila = 0;
     unsigned int columna = 0;
-    int turnos = 0;   // Contador de turnos para detectar empate 
+    int turnos = 0;    
     char tablero[3][3] = {
         {'1', '2', '3'},
         {'4', '5', '6'},
         {'7', '8', '9'}
     };
 
-    // Bucle principal del juego
     while (ganador == 0 && turnos < 9)
     {
-        // Mostrar tablero
         printf("\n");
         printf("%c | %c | %c\n", tablero[0][0], tablero[0][1], tablero[0][2]);
         printf("---------\n");
@@ -25,7 +23,6 @@ int main(void)
         printf("---------\n");
         printf("%c | %c | %c\n", tablero[2][0], tablero[2][1], tablero[2][2]);
 
-        // Pedir jugada
         do
         {
             printf("Jugador %d, ingrese un numero valido "
@@ -47,11 +44,9 @@ int main(void)
             }
         } while (opcion < 1 || opcion > 9 || tablero[fila][columna] == 'X' || tablero[fila][columna] == 'O');
 
-        // Colocar ficha
         tablero[fila][columna] = (jugador == 1) ? 'X' : 'O';
         turnos++;
 
-        // Verificar ganador - diagonales
         if ((tablero[0][0] == tablero[1][1] && tablero[0][0] == tablero[2][2]) ||
             (tablero[0][2] == tablero[1][1] && tablero[0][2] == tablero[2][0]))
         {
@@ -59,7 +54,6 @@ int main(void)
         }
         else
         {
-            // Verificar ganador - filas y columnas
             for (unsigned int linea = 0; linea <= 2; ++linea)
             {
                 if ((tablero[linea][0] == tablero[linea][1] && tablero[linea][0] == tablero[linea][2]) ||
@@ -70,23 +64,20 @@ int main(void)
                 }
             }
         }
-
-        // Cambiar de jugador solo si no hay ganador
+        
         if (ganador == 0)
         {
             jugador = (jugador == 1) ? 2 : 1;
         }
     }
 
-    // Mostrar tablero final
     printf("\n");
     printf("%c | %c | %c\n", tablero[0][0], tablero[0][1], tablero[0][2]);
     printf("---------\n");
     printf("%c | %c | %c\n", tablero[1][0], tablero[1][1], tablero[1][2]);
     printf("---------\n");
     printf("%c | %c | %c\n", tablero[2][0], tablero[2][1], tablero[2][2]);
-
-    // Mostrar resultado
+    
     if (ganador != 0)
     {
         printf("\nEl jugador %d ha ganado!\n", ganador);
