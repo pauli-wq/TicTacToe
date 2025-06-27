@@ -7,7 +7,7 @@ int main(void)
     int opcion = 0;
     unsigned int fila = 0;
     unsigned int columna = 0;
-    int turnos = 0;   // Contador de turnos para detectar empate real
+    int turnos = 0;   // Contador de turnos para detectar empate 
     char tablero[3][3] = {
         {'1', '2', '3'},
         {'4', '5', '6'},
